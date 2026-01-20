@@ -1,9 +1,10 @@
 import Image from "next/image";
+import { Dashboard } from "./dashboard/page";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="flex items-center justify-center font-sans dark:bg-white text-black w-full min-h-screen bg-slate-50 m-auto gap-6">
+      {/* <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -59,7 +60,8 @@ export default function Home() {
             Documentation
           </a>
         </div>
-      </main>
+      </main> */}
+      <Dashboard/>
     </div>
   );
 }
