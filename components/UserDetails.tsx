@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Header } from './Header';
 import { Shield, ArrowLeft, FileText } from 'lucide-react';
 import { MainInfo } from './MainInfo';
@@ -9,62 +9,26 @@ interface UserDetailsInterface {
     onBack: (id: number | null) => void;
 }
 
-const MAKER_STEPS =[
-    'Baseline (Client Profile on file)',
-    'CAF Requirements Assessment',
-    'Connected Parties',
-    'Screening Assessment',
-    'Finalize Client Attestation Form (CAF)',
-     'Submit Review'
+const STEPS_DATA = [
+    { id: 1, stepperNumber: 1, stepperText: "Baseline (Client Profile on file)" },
+    { id: 2, stepperNumber: 2, stepperText: "CAF Requirements Assessment" },
+    { id: 3, stepperNumber: 3, stepperText: "Connected Parties" },
+    { id: 4, stepperNumber: 4, stepperText: "Screening Assessment" },
+    { id: 5, stepperNumber: 5, stepperText: "Finalize Client Attestation Form (CAF)" },
+    { id: 6, stepperNumber: 6, stepperText: "Submit Review" }
 ];
-
-const stepper = [
-    {
-        id: 1,
-        stepperNumber: 1,
-        stepperText: "Baseline (Client Profile on file)",
-        actionDone: true,
-        actionProgress: false
-    },
-    {
-        id: 2,
-        stepperNumber: 2,
-        stepperText: "CAF Requirements Assessment",
-        actionDone: false,
-        actionProgress: true
-    },
-    {
-        id: 3,
-        stepperNumber: 3,
-        stepperText: "Connected Parties",
-        actionDone: false,
-        actionProgress: false
-    },
-    {
-        id: 4,
-        stepperNumber: 4,
-        stepperText: "Screening Assessment",
-        actionDone: false,
-        actionProgress: false
-    },
-    {
-        id: 5,
-        stepperNumber: 5,
-        stepperText: "Finalize Client Attestation Form (CAF)",
-        actionDone: false,
-        actionProgress: false
-    },
-    {
-        id: 6,
-        stepperNumber: 6,
-        stepperText: "Submit Review",
-        actionDone: false,
-        actionProgress: false
-    }
-]
 
 
 export const UserDetails: React.FC<UserDetailsInterface> = ({userId, onBack}) => {
+    const [currentStep, setCurrentStep] = useState(1);
+    const [stepsData, setStepsData] = useState(STEPS_DATA);
+
+    const handleStepClick = (stepNumber: number) => {
+        setCurrentStep(stepNumber);
+    };
+
+    const activeStepDetails = stepsData.find(s => s.stepperNumber === currentStep);
+
   return (
     <div className='w-full'>
         {userId && 
@@ -81,14 +45,18 @@ export const UserDetails: React.FC<UserDetailsInterface> = ({userId, onBack}) =>
                         headerText={"AI Enabled CAF preparation"}
                         headerIcon={<FileText className='w-10 h-10 text-white'/>}
                         headerItemLabel={"Current Step"}
-                        headerItemText={"1/6"}
+                        headerItemText={`${currentStep}/6`}
                         styles='top-0'
                     />
                 </div>
                 <div className='stepper-conatiner'>
-                    <Stepper stepperDetails={stepper}/>
+                    <Stepper 
+                        activeStep={currentStep} 
+                        onStepClick={handleStepClick}
+                        stepsData={stepsData}
+                    />
                 </div>
-                <MainInfo />
+                <MainInfo activeStepDetails={activeStepDetails}/>
                 
             </div>
         }
