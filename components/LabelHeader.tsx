@@ -10,7 +10,7 @@ export const LabelHeader: React.FC<LabelHeaderInterface> = ({labelText, labelIco
         <p className='p-0'>
             {labelIcon}
         </p>
-        <p className='text-slate-700 text-base'>
+        <p className='text-slate-700 text-base ml-2'>
              {labelText}
         </p>
     </div>

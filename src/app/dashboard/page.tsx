@@ -17,12 +17,12 @@ export const  Dashboard= () => {
         {!selectedUserId &&
         <div className='dahboard-main'>
             <div className='header-component'>
-                <Header styles='top-0 left-0 fixed' headerLabel={"AI KYC"} headerText={"Compliance Management System • Banking Operations"} headerIcon={<Shield className='w-10 h-10 text-white'/>} headerItemLabel={"Logged in as"} headerItemText={"John Doe"}    />
+                <Header styles='top-0 sticky z-50 w-full' headerLabel={"AI KYC"} headerText={"Compliance Management System • Banking Operations"} headerIcon={<Shield className='w-10 h-10 text-white'/>} headerItemLabel={"Logged in as"} headerItemText={"John Doe"}    />
             </div>
             <div className='card-refresh-list'>
                 <Card display='flex' content={<ButtonComponent classStyle="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all duration-200 font-semibold shadow-md hover:shadow-lg flex items-center gap-2 text-white w-fit" text='Reset All Data' icon={<RefreshCcw/>}/>}/>
             </div>
-            <div className='dashboard-number-list flex flex-row items-start justify-start w-full gap-4 mt-5'>
+            <div className='dashboard-number-list flex flex-row items-stretch justify-start w-full gap-4 mt-5'>
                 <div className='flex-1 block'>
                     <Card >
                         <div className='flex justify-between items-start mb-4'>
